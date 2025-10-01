@@ -1,4 +1,5 @@
-# WebCraft Studios - Small Business Portfolio Website
+<<<<<<< HEAD
+# Growsphere - Small Business Portfolio Website
 
 A modern, responsive portfolio website built with Next.js and Tailwind CSS for a company that creates websites for small businesses like gyms, schools, and local shops.
 
