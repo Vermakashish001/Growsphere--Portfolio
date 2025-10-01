@@ -1,0 +1,60 @@
+{
+    "websiteTitle": "GrowSphere Studios",
+    "websiteDescription": "Crafting digital experiences that captivate and convert.",
+    "author": "Kashish Verma",
+    "authorEmail": "growsphere@zohomail.in",
+    "projects": [
+        {
+            "id": 1,
+            "title": "EcoShop - Sustainable E-commerce",
+            "description": "A comprehensive e-commerce platform specializing in eco-friendly and sustainable products. Features include advanced filtering, carbon footprint tracking, and sustainability scoring for each product.",
+            "image": "/images/ecoshop.png",
+            "link": "https://ecoshop-demo.com",
+            "category": "ecommerce",
+            "technologies": ["Next.js", "TypeScript", "Stripe", "PostgreSQL", "Tailwind CSS"],
+            "features": ["Product Catalog", "Carbon Footprint Tracking", "Sustainability Scoring", "Secure Payments", "Admin Dashboard"]
+        },
+        {
+            "id": 2,
+            "title": "FitTrack Pro - Fitness Companion",
+            "description": "An advanced fitness tracking application that combines workout logging, nutrition planning, and social features. Users can set goals, track progress, and connect with fitness communities.",
+            "image": "/images/fittrack.png",
+            "link": "https://fittrack-pro.com",
+            "category": "gym",
+            "technologies": ["React Native", "Node.js", "MongoDB", "Firebase", "Chart.js"],
+            "features": ["Workout Logging", "Nutrition Planning", "Goal Setting", "Progress Tracking", "Social Community"]
+        },
+        {
+            "id": 3,
+            "title": "Revibe - Mental Wellness Hub",
+            "description": "A comprehensive mental health platform offering daily affirmations, mood tracking, guided meditations, and personalized wellness plans to promote overall mental well-being.",
+            "image": "/images/revibe.png",
+            "link": "https://revibeapp.com",
+            "category": "health",
+            "technologies": ["Flutter", "Firebase", "Python", "TensorFlow", "AWS"],
+            "features": ["Mood Tracking", "Daily Affirmations", "Guided Meditations", "Wellness Plans", "AI Insights"]
+        },
+        {
+            "id": 4,
+            "title": "FoodieConnect - Restaurant Discovery",
+            "description": "Social dining platform that helps users discover local restaurants, share reviews, make reservations, and connect with fellow food enthusiasts in their area.",
+            "image": "/images/foodieconnect.png",
+            "link": "https://foodieconnect.app",
+            "category": "social",
+            "technologies": ["Vue.js", "Laravel", "Google Maps API", "PostgreSQL", "Vuetify"],
+            "features": ["Restaurant Discovery", "Review System", "Reservation Booking", "Social Network", "Location-based Search"]
+        },
+               {
+            "id": 5,
+            "title": "HealthHub - Telemedicine Platform",
+            "description": "Comprehensive telehealth solution connecting patients with healthcare providers through secure video consultations, prescription management, and health record tracking.",
+            "image": "/images/healthhub.png",
+            "link": "https://healthhub-platform.com",
+            "category": "health",
+            "technologies": ["React", "Node.js", "WebRTC", "HIPAA Compliance", "AWS"],
+            "features": ["Video Consultations", "Prescription Management", "Health Records", "Appointment Scheduling", "Secure Messaging"]
+        }
+    ],
+    "mobile": "+91 62071-07305"
+    
+}
