@@ -3,11 +3,29 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { getWebsiteData } from '@/lib/data'
+import logo from './../assets/logo.png';
+
+type NavItem = {
+  name: string
+  path: string
+  type?: 'scroll' | 'link'
+  isButton?: boolean
+}
+
+const defaultNavigation: NavItem[] = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: 'services', type: 'scroll' },
+  { name: 'Portfolio', path: 'portfolio', type: 'scroll' },
+  { name: 'Testimonials', path: 'testimonials', type: 'scroll' },
+  { name: 'Capstone Projects', path: '/capstone-projects', type: 'link' },
+  { name: 'Contact Us', path: 'contact', type: 'scroll' }
+]
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const websiteData = getWebsiteData()
+  const navigation: NavItem[] = (websiteData.navigation as NavItem[]) || defaultNavigation
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,44 +59,32 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <button
-                onClick={() => scrollToSection('home')}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-white hover:text-primary-200'
-                }`}
-              >
-                Home
-              </button>
-              <button
-                onClick={() => scrollToSection('services')}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-white hover:text-primary-200'
-                }`}
-              >
-                Services
-              </button>
-              <button
-                onClick={() => scrollToSection('portfolio')}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-white hover:text-primary-200'
-                }`}
-              >
-                Portfolio
-              </button>
-              <button
-                onClick={() => scrollToSection('testimonials')}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-white hover:text-primary-200'
-                }`}
-              >
-                Testimonials
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="bg-primary-600 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-700 transition-colors"
-              >
-                Contact Us
-              </button>
+              {navigation.map((item) => (
+                item.type === 'scroll' ? (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(item.path)}
+                    className={item.isButton 
+                      ? "bg-primary-600 text-white px-6 py-2 rounded-md text-sm font-medium hover:bg-primary-700 transition-colors"
+                      : `px-3 py-2 text-sm font-medium transition-colors ${
+                          isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-white hover:text-primary-200'
+                        }`
+                    }
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.path}
+                    className={`px-3 py-2 text-sm font-medium transition-colors ${
+                      isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-white hover:text-primary-200'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              ))}
             </div>
           </div>
 
@@ -101,36 +107,30 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg rounded-md">
-              <button
-                onClick={() => scrollToSection('home')}
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 w-full text-left"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => scrollToSection('services')}
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 w-full text-left"
-              >
-                Services
-              </button>
-              <button
-                onClick={() => scrollToSection('portfolio')}
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 w-full text-left"
-              >
-                Portfolio
-              </button>
-              <button
-                onClick={() => scrollToSection('testimonials')}
-                className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 w-full text-left"
-              >
-                Testimonials
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="block px-3 py-2 text-base font-medium bg-primary-600 text-white rounded-md hover:bg-primary-700 w-full text-left"
-              >
-                Contact Us
-              </button>
+              {navigation.map((item) => (
+                item.type === 'scroll' ? (
+                  <button
+                    key={item.name}
+                    onClick={() => scrollToSection(item.path)}
+                    className={
+                      item.isButton
+                        ? "block px-3 py-2 text-base font-medium bg-primary-600 text-white rounded-md hover:bg-primary-700 w-full text-left"
+                        : "block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 w-full text-left"
+                    }
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.path}
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary-600 w-full text-left"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              ))}
             </div>
           </div>
         )}

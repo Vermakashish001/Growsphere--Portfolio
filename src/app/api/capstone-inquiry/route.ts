@@ -1,0 +1,260 @@
+import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
+
+interface TeamMember {
+  name: string;
+  phone: string;
+}
+
+interface InquiryData {
+  fullName: string;
+  email: string;
+  phone: string;
+  university: string;
+  teamMembers: TeamMember[];
+  projectTitle: string;
+  projectDescription: string;
+  techStack: string;
+  deadline: string;
+  files?: File[];
+}
+
+export async function POST(request: Request) {
+  try {
+    // Parse the FormData
+    const formData = await request.formData();
+    const data: Partial<InquiryData> = {
+      fullName: formData.get('fullName') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      university: formData.get('university') as string,
+      teamMembers: JSON.parse(formData.get('teamMembers') as string),
+      projectTitle: formData.get('projectTitle') as string,
+      projectDescription: formData.get('projectDescription') as string,
+      techStack: formData.get('techStack') as string,
+      deadline: formData.get('deadline') as string
+    };
+
+    // Get files and validate them
+    const files = formData.getAll('files') as File[];
+    
+    // Validate file sizes (max 10MB per file)
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
+    for (const file of files) {
+      if (file.size > MAX_FILE_SIZE) {
+        return NextResponse.json(
+          { error: `File ${file.name} exceeds the maximum size limit of 10MB` },
+          { status: 400 }
+        );
+      }
+    }
+
+    // Validate total number of files
+    if (files.length > 5) {
+      return NextResponse.json(
+        { error: 'Maximum 5 files can be uploaded' },
+        { status: 400 }
+      );
+    }
+
+    // Validate required fields
+    const requiredFields = ['fullName', 'email', 'phone', 'university', 'projectTitle', 'projectDescription', 'techStack', 'deadline'];
+    const missingFields = requiredFields.filter(field => !data[field as keyof typeof data]);
+    
+    if (missingFields.length > 0) {
+      return NextResponse.json(
+        { error: `Missing required fields: ${missingFields.join(', ')}` },
+        { status: 400 }
+      );
+    }
+
+    // Validate team members
+    if (!data.teamMembers || data.teamMembers.length < 2) {
+      return NextResponse.json(
+        { error: 'At least two team members are required' },
+        { status: 400 }
+      );
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email!)) {
+      return NextResponse.json(
+        { error: 'Invalid email address' },
+        { status: 400 }
+      );
+    }
+
+    // Check if email configuration is available
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Email configuration missing');
+      return NextResponse.json(
+        { error: 'Email service configuration error' },
+        { status: 500 }
+      );
+    }
+
+    // Check email configuration
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Email configuration missing');
+      return NextResponse.json(
+        { error: 'Email service configuration error. Please contact the administrator.' },
+        { status: 500 }
+      );
+    }
+
+    // Create SMTP configuration
+    const smtpConfig = {
+      host: process.env.SMTP_HOST || 'smtp.zoho.com',
+      port: parseInt(process.env.SMTP_PORT || '465'),
+      secure: parseInt(process.env.SMTP_PORT || '465') === 465,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      debug: true,
+      logger: true
+    };
+
+    // Log SMTP configuration (without sensitive data)
+    console.log('SMTP Configuration:', {
+      ...smtpConfig,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: '******'
+      }
+    });
+
+    // Create transporter with proper type
+    const transporter = nodemailer.createTransport(smtpConfig);
+
+    try {
+      // Verify connection configuration
+      await transporter.verify();
+      console.log('SMTP connection verified successfully');
+    } catch (verifyError) {
+      console.error('SMTP Verification Error:', verifyError);
+      return NextResponse.json(
+        { error: 'Email service connection error. Please try again later.' },
+        { status: 500 }
+      );
+    }
+
+    // Format team members for email
+    const teamMembersHtml = data.teamMembers
+      .map((member, index) => `
+        <div style="margin: 10px 0;">
+          <p><strong>Member ${index + 1}:</strong></p>
+          <p>Name: ${member.name}</p>
+          <p>Phone: ${member.phone}</p>
+        </div>
+      `)
+      .join('');
+
+    // Process files for attachments
+    const attachments = [];
+    for (const file of files) {
+      try {
+        const buffer = await file.arrayBuffer();
+        attachments.push({
+          filename: file.name,
+          content: Buffer.from(buffer),
+          contentType: file.type
+        });
+      } catch (fileError) {
+        console.error(`Error processing file ${file.name}:`, fileError);
+        return NextResponse.json(
+          { error: `Error processing file ${file.name}. Please try again.` },
+          { status: 500 }
+        );
+      }
+    }
+
+    // Email content
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_TO || process.env.EMAIL_USER,
+      subject: `Capstone Project Inquiry: ${data.projectTitle}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">
+            New Capstone Project Inquiry
+          </h2>
+          
+          <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3>Primary Contact Information:</h3>
+            <p><strong>Name:</strong> ${data.fullName}</p>
+            <p><strong>Email:</strong> ${data.email}</p>
+            <p><strong>Phone:</strong> ${data.phone}</p>
+            <p><strong>University:</strong> ${data.university}</p>
+          </div>
+
+          <div style="background-color: #ffffff; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; margin: 20px 0;">
+            <h3>Team Members:</h3>
+            ${teamMembersHtml}
+          </div>
+          
+          <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3>Project Details:</h3>
+            <p><strong>Title:</strong> ${data.projectTitle}</p>
+            <p><strong>Technology Stack:</strong> ${data.techStack}</p>
+            <p><strong>Deadline:</strong> ${data.deadline}</p>
+            <h4>Project Description:</h4>
+            <p style="white-space: pre-wrap;">${data.projectDescription}</p>
+          </div>
+
+          ${files.length > 0 ? `
+            <div style="background-color: #eff6ff; padding: 15px; border-radius: 8px; margin: 20px 0;">
+              <h3>Attached Files:</h3>
+              <ul>
+                ${files.map(file => `<li>${file.name} (${Math.round(file.size / 1024)}KB)</li>`).join('')}
+              </ul>
+            </div>
+          ` : ''}
+          
+          <div style="margin-top: 20px; padding: 15px; background-color: #eff6ff; border-radius: 8px; border-left: 4px solid #3b82f6;">
+            <p style="margin: 0; color: #1e40af;">
+              <strong>Reply to:</strong> ${data.email}
+            </p>
+          </div>
+        </div>
+      `,
+      attachments
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    return NextResponse.json(
+      { message: 'Inquiry submitted successfully' },
+      { status: 200 }
+    );
+
+  } catch (error) {
+    console.error('Error processing inquiry:', error);
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      errorType: error?.constructor?.name,
+      emailConfig: {
+        host: process.env.SMTP_HOST || 'smtp.zoho.com',
+        port: process.env.SMTP_PORT || '465',
+        user: process.env.EMAIL_USER ? 'Set' : 'Not set',
+        pass: process.env.EMAIL_PASS ? 'Set' : 'Not set',
+      }
+    });
+    
+    // Return more specific error message
+    const errorMessage = error instanceof Error 
+      ? error.message
+      : 'Failed to submit inquiry. Please try again later.';
+
+    return NextResponse.json(
+      { error: errorMessage },
+      { status: 500 }
+    );
+  }
+}

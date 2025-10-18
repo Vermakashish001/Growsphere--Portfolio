@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { getWebsiteData } from '@/lib/data'
+import HeroButton from './ui/HeroButton'
+import Icon from './ui/Icon'
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -41,19 +43,25 @@ const Hero = () => {
             grow their online presence. Beautiful design meets powerful functionality.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <HeroButton
+              variant="primary"
+              size="xl"
               onClick={scrollToContact}
-              className="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              icon="arrow-right"
+              iconPosition="right"
             >
               Get Your Website Today
-            </button>
-            <button
+            </HeroButton>
+            <HeroButton
+              variant="secondary"
+              size="xl"
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-              className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300"
+              icon="eye"
+              iconPosition="right"
             >
               View Our Work
-            </button>
+            </HeroButton>
           </div>
         </div>
 
@@ -78,9 +86,7 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        <Icon name="chevron-down" size={24} className="text-white" />
       </div>
     </section>
   )

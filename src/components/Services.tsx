@@ -161,7 +161,7 @@ const Services = () => {
                     className="w-full flex-shrink-0 px-2"
                   >
                     <div className="bg-white rounded-xl shadow-lg p-8 flex flex-col min-h-[400px]">
-                      <div className="text-blue-600 mb-6">
+                      <div className="text-primary-600 mb-6">
                         {service.icon}
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -304,7 +304,7 @@ const Services = () => {
         }`}>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="bg-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             Get Started Today
           </button>

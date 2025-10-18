@@ -107,7 +107,7 @@ const Portfolio = () => {
                 onClick={() => setActiveFilter(filter.id)}
                 className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeFilter === filter.id
-                    ? 'bg-blue-600 text-white shadow-lg'
+                    ? 'bg-primary-600 text-white shadow-lg'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -211,7 +211,7 @@ const Portfolio = () => {
 
                         {/* Button pinned to bottom */}
                         <div className="mt-auto pt-4">
-                          <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                          <button className="w-full bg-primary-600 text-white py-2 rounded-lg font-medium hover:bg-primary-700 transition-colors">
                             View Case Study
                           </button>
                         </div>
@@ -268,7 +268,7 @@ const Portfolio = () => {
                       key={index}
                       onClick={() => goToSlide(index)}
                       className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        currentSlide === index ? 'bg-blue-600' : 'bg-gray-300'
+                        currentSlide === index ? 'bg-primary-600' : 'bg-gray-300'
                       }`}
                     />
                   ))}
@@ -294,8 +294,8 @@ const Portfolio = () => {
               </span>
               {isAutoScrolling && !userInteracted && (
                 <div className="flex items-center justify-center space-x-1">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-                  <span className="text-xs text-blue-600">Auto-scrolling</span>
+                  <div className="w-2 h-2 bg-primary-600 rounded-full animate-pulse"></div>
+                  <span className="text-xs text-primary-600">Auto-scrolling</span>
                 </div>
               )}
             </div>
@@ -386,7 +386,7 @@ const Portfolio = () => {
 
                 {/* Button pinned to bottom */}
                 <div className="mt-auto pt-4">
-                  <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                  <button className="w-full bg-primary-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                     View Case Study
                   </button>
                 </div>
@@ -403,7 +403,7 @@ const Portfolio = () => {
           </p>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="bg-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             Start Your Project
           </button>
