@@ -128,7 +128,7 @@ Contact Information:
         </svg>
       ),
       title: 'Contact',
-      details: contactInfo.author,
+      details: contactInfo.owner,
       subtitle: 'Project Lead & Developer'
     },
     {
