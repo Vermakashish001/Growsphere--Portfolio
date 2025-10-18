@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { getProjects, type Project } from '@/lib/data'
+import { getProjects } from '@/lib/data'
+import type { Project } from '@/types'
 
 const Portfolio = () => {
   const [isVisible, setIsVisible] = useState(false)
@@ -154,7 +155,7 @@ const Portfolio = () => {
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                              project.category === 'app' ? 'bg-blue-100 text-blue-600' :
+                              project.category === 'other' ? 'bg-blue-100 text-blue-600' :
                               project.category === 'ecommerce' ? 'bg-green-100 text-green-600' :
                               'bg-gray-100 text-gray-600'
                             }`}>
@@ -329,7 +330,7 @@ const Portfolio = () => {
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      project.category === 'app' ? 'bg-blue-100 text-blue-600' :
+                      project.category === 'other' ? 'bg-blue-100 text-blue-600' :
                       project.category === 'ecommerce' ? 'bg-green-100 text-green-600' :
                       'bg-gray-100 text-gray-600'
                     }`}>

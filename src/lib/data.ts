@@ -1,6 +1,9 @@
 import data from '../../data.json'
 import { BusinessInfo, Project, Service, Testimonial, BusinessStats, SEOData } from '@/types'
 
+// Re-export commonly used types for backward compatibility
+export type { Project, Service, Testimonial, BusinessInfo, BusinessStats, SEOData } from '@/types'
+
 // Enhanced data access layer with proper TypeScript types
 export const getBusinessInfo = (): BusinessInfo => {
   return data.businessInfo as BusinessInfo
@@ -59,6 +62,7 @@ export const getWebsiteData = () => {
     author: businessInfo.owner,
     authorEmail: businessInfo.email,
     mobile: businessInfo.phone,
+    navigation: [] // Empty array for now, can be populated from data.json if needed
   }
 }
 
