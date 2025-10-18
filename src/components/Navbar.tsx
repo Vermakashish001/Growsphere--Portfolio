@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { X, ChevronRight, Mail, Phone } from 'lucide-react'
 import { getWebsiteData } from '@/lib/data'
 import logo from './../assets/logo.png';
 
@@ -166,7 +167,7 @@ const Navbar = () => {
           />
           
           {/* Mobile Menu Panel */}
-          <div className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl">
+          <div className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl overflow-hidden flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
               <h2 className="text-xl font-bold text-gray-900">Menu</h2>
@@ -174,14 +175,12 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
               >
-                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <X className="w-6 h-6 text-gray-600" />
               </button>
             </div>
             
             {/* Navigation Items */}
-            <div className="p-6">
+            <div className="flex-1 overflow-y-auto p-6">
               <nav className="space-y-3">
                 {navigation.map((item, index) => (
                   item.type === 'scroll' ? (
@@ -196,16 +195,11 @@ const Navbar = () => {
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-lg font-medium">{item.name}</span>
-                        <svg 
+                        <ChevronRight 
                           className={`w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 ${
                             item.isButton ? 'text-white/80' : 'text-gray-400 group-hover:text-primary-500'
                           }`} 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
+                        />
                       </div>
                     </button>
                   ) : (
@@ -217,43 +211,12 @@ const Navbar = () => {
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-lg font-medium">{item.name}</span>
-                        <svg className="w-5 h-5 text-gray-400 group-hover:text-primary-500 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
+                        <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-primary-500 transition-transform duration-300 group-hover:translate-x-1" />
                       </div>
                     </Link>
                   )
                 ))}
               </nav>
-              
-              {/* Contact Info in Mobile Menu */}
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Get in Touch</h3>
-                <div className="space-y-3">
-                  <a href={`mailto:${getWebsiteData().authorEmail}`} className="flex items-center p-4 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors duration-200 border border-primary-100">
-                    <div className="w-12 h-12 bg-primary-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Email Us</p>
-                      <p className="text-sm text-primary-600 font-medium">{getWebsiteData().authorEmail}</p>
-                    </div>
-                  </a>
-                  <a href={`tel:${getWebsiteData().mobile}`} className="flex items-center p-4 rounded-xl bg-green-50 hover:bg-green-100 transition-colors duration-200 border border-green-100">
-                    <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-900">Call Us</p>
-                      <p className="text-sm text-green-600 font-medium">{getWebsiteData().mobile}</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
