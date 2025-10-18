@@ -144,27 +144,36 @@ Contact Information:
   ]
 
   return (
-    <section id="contact" className="py-20 bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-white/3 rounded-full blur-3xl" />
+      </div>
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`text-center mb-12 sm:mb-16 lg:mb-20 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Ready to Get Started?
+          <div className="inline-flex items-center px-4 py-2 bg-primary-600/20 text-primary-300 rounded-full text-sm font-medium mb-6 backdrop-blur-sm border border-primary-500/30">
+            💬 Let's Talk
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Ready to <span className="bg-gradient-to-r from-primary-400 to-white bg-clip-text text-transparent">Get Started?</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-4">
             Let&apos;s discuss your project and create a website that helps your business grow. 
-            Fill out the form below and                 We&apos;ll get back to you within 24 hours.
+            Fill out the form below and we&apos;ll get back to you within 24 hours.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
           {/* Contact Form */}
           <div className={`transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
           }`}>
-            <div className="bg-white rounded-2xl p-8 text-gray-900 shadow-xl">
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">Send us a message</h3>
+            <div className="bg-white/95 backdrop-blur-lg rounded-2xl lg:rounded-3xl p-6 sm:p-8 lg:p-10 text-gray-900 shadow-2xl shadow-black/20 border border-white/10">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-900 leading-tight">Send us a message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -179,7 +188,7 @@ Contact Information:
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 hover:border-gray-400 bg-gray-50 focus:bg-white"
                       placeholder="Your full name"
                     />
                   </div>
@@ -195,13 +204,13 @@ Contact Information:
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 hover:border-gray-400 bg-gray-50 focus:bg-white"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                       Phone Number
@@ -212,7 +221,7 @@ Contact Information:
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 hover:border-gray-400 bg-gray-50 focus:bg-white"
                       placeholder="(555) 123-4567"
                     />
                   </div>
@@ -226,7 +235,7 @@ Contact Information:
                       name="businessType"
                       value={formData.businessType}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 hover:border-gray-400 bg-gray-50 focus:bg-white"
                     >
                       <option value="">Select your business type</option>
                       <option value="gym">Gym / Fitness Center</option>
@@ -251,7 +260,7 @@ Contact Information:
                     onChange={handleInputChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
+                    className="w-full px-4 py-3.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-300 hover:border-gray-400 bg-gray-50 focus:bg-white resize-none"
                     placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
                   />
                 </div>
@@ -259,10 +268,10 @@ Contact Information:
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300 ${
+                  className={`w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 ${
                     isSubmitting
                       ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-primary-600 hover:bg-primary-700 transform hover:scale-105 shadow-lg'
+                      : 'bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 transform hover:scale-105 shadow-lg hover:shadow-xl'
                   } text-white`}
                 >
                   {isSubmitting ? (
@@ -299,32 +308,32 @@ Contact Information:
           }`}>
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-white leading-tight">Get in Touch</h3>
                 <p className="text-gray-300 text-lg leading-relaxed">
                   Ready to transform your business with a professional website? 
                   We&apos;re here to help you every step of the way. Choose the best way to reach us:
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {contactInfoItems.map((info, index) => (
                   <div
                     key={index}
-                    className="flex items-start space-x-4 p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-colors"
+                    className="flex items-start space-x-4 p-6 bg-gray-800/50 backdrop-blur-sm rounded-2xl hover:bg-gray-700/50 transition-all duration-300 transform hover:scale-[1.02] border border-gray-700/50 hover:border-gray-600/50"
                   >
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary-600 rounded-lg flex items-center justify-center text-white">
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
                         {info.icon}
                       </div>
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-1">
+                      <h4 className="text-lg sm:text-xl font-semibold text-white mb-2 leading-tight">
                         {info.title}
                       </h4>
-                      <p className="text-primary-400 font-medium mb-1">
+                      <p className="text-primary-400 font-medium mb-1 text-base">
                         {info.details}
                       </p>
-                      <p className="text-gray-400 text-sm">
+                      <p className="text-gray-400 text-sm leading-relaxed">
                         {info.subtitle}
                       </p>
                     </div>
@@ -332,8 +341,8 @@ Contact Information:
                 ))}
               </div>
 
-              <div className="bg-primary-600 rounded-xl p-6">
-                <h4 className="text-xl font-bold mb-3">Why Choose WebCraft Studios?</h4>
+              <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-6 sm:p-8 border border-primary-500/20 shadow-xl">
+                <h4 className="text-xl sm:text-2xl font-bold mb-4 text-white">Why Choose GrowSphere Studios?</h4>
                 <ul className="space-y-2 text-primary-100">
                   <li className="flex items-center">
                     <svg className="w-5 h-5 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
