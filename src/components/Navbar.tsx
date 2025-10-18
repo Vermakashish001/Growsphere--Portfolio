@@ -217,6 +217,31 @@ const Navbar = () => {
                   )
                 ))}
               </nav>
+              
+              {/* Contact Info in Mobile Menu */}
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Get in Touch</h3>
+                <div className="space-y-3">
+                  <a href={`mailto:${getWebsiteData().authorEmail}`} className="flex items-center p-4 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors duration-200 border border-primary-100">
+                    <div className="w-12 h-12 bg-primary-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                      <Mail className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Email Us</p>
+                      <p className="text-sm text-primary-600 font-medium">{getWebsiteData().authorEmail}</p>
+                    </div>
+                  </a>
+                  <a href={`tel:${getWebsiteData().mobile}`} className="flex items-center p-4 rounded-xl bg-green-50 hover:bg-green-100 transition-colors duration-200 border border-green-100">
+                    <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                      <Phone className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">Call Us</p>
+                      <p className="text-sm text-green-600 font-medium">{getWebsiteData().mobile}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
