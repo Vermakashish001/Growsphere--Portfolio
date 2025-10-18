@@ -10,6 +10,7 @@ type NavItem = {
   path: string
   type?: 'scroll' | 'link'
   isButton?: boolean
+
 }
 
 const defaultNavigation: NavItem[] = [
@@ -25,7 +26,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const websiteData = getWebsiteData()
-  const navigation: NavItem[] = (websiteData.navigation as NavItem[]) || defaultNavigation
+  const navigation: NavItem[] =  defaultNavigation
 
   useEffect(() => {
     const handleScroll = () => {

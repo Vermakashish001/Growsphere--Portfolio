@@ -58,7 +58,7 @@ export const getWebsiteData = () => {
     websiteDescription: businessInfo.tagline,
     author: businessInfo.owner,
     authorEmail: businessInfo.email,
-    mobile: businessInfo.phone
+    mobile: businessInfo.phone,
   }
 }
 
