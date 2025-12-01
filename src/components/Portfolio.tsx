@@ -87,17 +87,20 @@ const Portfolio = () => {
   }
 
   return (
-    <section id="portfolio" className="py-20 bg-white">
+    <section id="portfolio" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-primary-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our Portfolio
+          <div className="inline-flex items-center px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
+            🚀 Our Work
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 mb-6 leading-tight">
+            Featured <span className="bg-gradient-to-r from-accent-600 to-primary-600 bg-clip-text text-transparent">Projects</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Take a look at some of the amazing websites we&apos;ve created for small businesses. 
-            Each project is tailored to meet specific business needs and goals.
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Discover our latest web development projects crafted for small businesses. 
+            Each solution is uniquely designed to drive growth and engagement.
           </p>
 
           {/* Filter Buttons */}
@@ -106,10 +109,10 @@ const Portfolio = () => {
               <button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                   activeFilter === filter.id
-                    ? 'bg-primary-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    ? 'bg-gradient-to-r from-accent-500 to-primary-500 text-white shadow-lg shadow-accent-500/25'
+                    : 'bg-white text-neutral-600 hover:bg-neutral-50 shadow-md hover:shadow-lg border border-neutral-200'
                 }`}
               >
                 {filter.label} ({filter.count})

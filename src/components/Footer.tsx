@@ -19,11 +19,11 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary-500/3 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-white/2 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-secondary-500/5 rounded-full blur-3xl" />
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,7 +32,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-2">
             <div className="mb-8">
-              <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary-400 to-white bg-clip-text text-transparent mb-6">
+              <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-secondary-400 to-white bg-clip-text text-transparent mb-6">
                 {websiteData.websiteTitle}
               </h3>
               <p className="text-gray-300 leading-relaxed text-base lg:text-lg max-w-lg">

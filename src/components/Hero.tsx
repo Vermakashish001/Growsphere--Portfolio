@@ -21,12 +21,12 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-500 via-accent-500 to-accent-400 overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Background Pattern & Animations */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Background Circles */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary-300/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '1s'}} />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary-400/10 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '1s'}} />
         <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-white/3 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}} />
         
         {/* Grid Pattern */}
@@ -43,12 +43,12 @@ const Hero = () => {
             <span className="inline-block animate-fade-in">
               {websiteData.websiteTitle}
             </span>
-            <span className="block text-primary-200 bg-gradient-to-r from-primary-200 to-white bg-clip-text text-transparent animate-slide-up" style={{animationDelay: '0.3s'}}>
+            <span className="block text-primary-500 bg-gradient-to-r from-secondary-200 to-white bg-clip-text text-transparent animate-slide-up" style={{animationDelay: '0.3s'}}>
               Digital Experiences
             </span>
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary-100 mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4 animate-fade-in" style={{animationDelay: '0.6s'}}>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-accent-100 mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed px-4 animate-fade-in" style={{animationDelay: '0.6s'}}>
             {websiteData.websiteDescription} We create modern, responsive websites that help businesses 
             grow their online presence. 
             <span className="block mt-2 text-white/90 font-medium">
@@ -83,16 +83,16 @@ const Hero = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}>
           <div className="text-center p-6 sm:p-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent">100+</div>
-            <div className="text-primary-200 text-sm sm:text-base font-medium">Websites Created</div>
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white to-secondary-200 bg-clip-text text-transparent">100+</div>
+            <div className="text-secondary-200 text-sm sm:text-base font-medium">Websites Created</div>
           </div>
           <div className="text-center p-6 sm:p-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent">98%</div>
-            <div className="text-primary-200 text-sm sm:text-base font-medium">Client Satisfaction</div>
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white to-secondary-200 bg-clip-text text-transparent">98%</div>
+            <div className="text-secondary-200 text-sm sm:text-base font-medium">Client Satisfaction</div>
           </div>
           <div className="text-center p-6 sm:p-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent">24/7</div>
-            <div className="text-primary-200 text-sm sm:text-base font-medium">Support Available</div>
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 bg-gradient-to-r from-white to-secondary-200 bg-clip-text text-transparent">24/7</div>
+            <div className="text-secondary-200 text-sm sm:text-base font-medium">Support Available</div>
           </div>
         </div>
       </div>

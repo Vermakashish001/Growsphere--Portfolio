@@ -28,28 +28,31 @@ const features = [
 
 const CapstoneFeatures = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-primary-500 via-accent-500 to-accent-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Comprehensive Capstone Project Services
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6">
+            ⚡ Our Services
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            Comprehensive <span className="text-secondary-200">Capstone Services</span>
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Everything you need to successfully complete your capstone project
+          <p className="text-lg text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Everything you need to successfully complete your capstone project with expert guidance
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="relative bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              className="bg-white rounded-3xl shadow-lg p-8 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1"
             >
-              <div className="text-4xl mb-4">
-                <feature.icon className="text-primary-600" />
+              <div className="w-16 h-16 bg-accent-100 rounded-2xl flex items-center justify-center mb-6">
+                <feature.icon className="w-8 h-8 text-accent-600" />
               </div>
-              <h3 className="text-lg font-medium text-gray-900">{feature.title}</h3>
-              <p className="mt-2 text-base text-gray-500">{feature.description}</p>
+              <h3 className="text-xl font-bold text-neutral-900 mb-4 leading-tight">{feature.title}</h3>
+              <p className="text-neutral-600 leading-relaxed text-sm">{feature.description}</p>
             </div>
           ))}
         </div>

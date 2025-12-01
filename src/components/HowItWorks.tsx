@@ -32,14 +32,17 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-20 bg-white">
+    <section id="how-it-works" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-neutral-50 via-white to-primary-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            How It Works
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-6">
+            🚀 Our Process
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 mb-6 leading-tight">
+            How It <span className="bg-gradient-to-r from-accent-600 to-primary-600 bg-clip-text text-transparent">Works</span>
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-            Our proven process ensures successful project delivery
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            Our proven process ensures successful project delivery with clear milestones and regular communication
           </p>
         </div>
 

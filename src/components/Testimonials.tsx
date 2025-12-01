@@ -98,17 +98,20 @@ const Testimonials = () => {
   }
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-br from-primary-50 to-primary-100">
+    <section id="testimonials" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-secondary-50 via-secondary-100 to-secondary-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            What Our Clients Say
+          <div className="inline-flex items-center px-4 py-2 bg-secondary-500/20 backdrop-blur-sm text-secondary-700 rounded-full text-sm font-medium mb-6">
+            💬 Client Stories
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-900 mb-6 leading-tight">
+            Success <span className="bg-gradient-to-r from-secondary-600 to-secondary-500 bg-clip-text text-transparent">Stories</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Don&apos;t just take our word for it. Here&apos;s what small business owners are saying 
-            about their experience working with WebCraft Studios.
+          <p className="text-lg text-neutral-700 max-w-3xl mx-auto leading-relaxed">
+            Hear from business owners who transformed their online presence with our solutions. 
+            Real results from real partnerships.
           </p>
         </div>
 

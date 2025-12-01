@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { X, ChevronRight, Mail, Phone } from 'lucide-react'
-import { getWebsiteData } from '@/lib/data'
-import logo from './../assets/logo.png';
+import { Menu, X, ChevronRight, Mail, Phone } from 'lucide-react'
+import websiteData from '../../data.json'
+import Logo from './Logo'
 
 type NavItem = {
   name: string
@@ -41,7 +40,7 @@ const Navbar = () => {
       document.body.style.overflow = 'unset'
     }
   }, [isMobileMenuOpen])
-  const websiteData = getWebsiteData()
+  
   const navigation: NavItem[] =  defaultNavigation
 
   useEffect(() => {
@@ -76,19 +75,16 @@ const Navbar = () => {
                 className="flex items-center space-x-3 transition-all duration-300 hover:scale-105"
               >
                 <div className="relative">
-                  <Image
-                    src={logo}
-                    alt={websiteData.websiteTitle}
+                  <Logo 
                     width={40}
                     height={40}
                     className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
-                    priority
                   />
                 </div>
                 <span className={`text-lg sm:text-xl font-bold transition-colors duration-300 ${
                   isScrolled ? 'text-primary-600' : 'text-white'
                 }`}>
-                  {websiteData.websiteTitle}
+                  Grow<span className={`${isScrolled ? 'text-secondary-600' : 'text-secondary-300'}`}>Sphere</span>
                 </span>
               </Link>
             </div>
@@ -102,11 +98,11 @@ const Navbar = () => {
                       key={item.name}
                       onClick={() => scrollToSection(item.path)}
                       className={item.isButton 
-                        ? "bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:from-primary-700 hover:to-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        ? "bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                         : `relative px-4 py-2.5 text-sm font-medium transition-all duration-300 rounded-lg hover:scale-105 ${
                             isScrolled 
-                              ? 'text-gray-700 hover:text-primary-600 hover:bg-primary-50' 
-                              : 'text-white hover:text-primary-200 hover:bg-white/10'
+                              ? 'text-neutral-700 hover:text-primary-600 hover:bg-primary-50' 
+                              : 'text-white hover:text-secondary-200 hover:bg-white/10'
                           }`
                       }
                     >
@@ -118,8 +114,8 @@ const Navbar = () => {
                       href={item.path}
                       className={`relative px-4 py-2.5 text-sm font-medium transition-all duration-300 rounded-lg hover:scale-105 ${
                         isScrolled 
-                          ? 'text-gray-700 hover:text-primary-600 hover:bg-primary-50' 
-                          : 'text-white hover:text-primary-200 hover:bg-white/10'
+                          ? 'text-neutral-700 hover:text-primary-600 hover:bg-primary-50' 
+                          : 'text-white hover:text-secondary-200 hover:bg-white/10'
                       }`}
                     >
                       {item.name}
@@ -135,7 +131,7 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`relative p-3 rounded-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                   isScrolled 
-                    ? 'text-gray-700 hover:bg-gray-100 focus:ring-primary-500' 
+                    ? 'text-neutral-700 hover:bg-neutral-100 focus:ring-primary-500' 
                     : 'text-white hover:bg-white/10 focus:ring-white/50'
                 }`}
                 aria-label="Toggle mobile menu"
@@ -190,7 +186,7 @@ const Navbar = () => {
                       className={`group w-full text-left p-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] ${
                         item.isButton
                           ? "bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg hover:shadow-xl hover:from-primary-600 hover:to-primary-700"
-                          : "bg-white hover:bg-primary-50 text-gray-700 hover:text-primary-600 border border-gray-200 hover:border-primary-300 shadow-sm hover:shadow-md"
+                          : "bg-white hover:bg-primary-50 text-neutral-700 hover:text-primary-600 border border-neutral-200 hover:border-primary-300 shadow-sm hover:shadow-md"
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -207,7 +203,7 @@ const Navbar = () => {
                       key={item.name}
                       href={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="group block w-full text-left p-4 rounded-xl bg-white hover:bg-primary-50 text-gray-700 hover:text-primary-600 border border-gray-200 hover:border-primary-300 shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-[1.02]"
+                      className="group block w-full text-left p-4 rounded-xl bg-white hover:bg-primary-50 text-neutral-700 hover:text-primary-600 border border-neutral-200 hover:border-primary-300 shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-[1.02]"
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-lg font-medium">{item.name}</span>
@@ -219,25 +215,25 @@ const Navbar = () => {
               </nav>
               
               {/* Contact Info in Mobile Menu */}
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Get in Touch</h3>
+              <div className="mt-8 pt-6 border-t border-neutral-200">
+                <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-4">Get in Touch</h3>
                 <div className="space-y-3">
-                  <a href={`mailto:${getWebsiteData().authorEmail}`} className="flex items-center p-4 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors duration-200 border border-primary-100">
+                  <a href={`mailto:${websiteData.businessInfo.email}`} className="flex items-center p-4 rounded-xl bg-primary-50 hover:bg-primary-100 transition-colors duration-200 border border-primary-100">
                     <div className="w-12 h-12 bg-primary-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
                       <Mail className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">Email Us</p>
-                      <p className="text-sm text-primary-600 font-medium">{getWebsiteData().authorEmail}</p>
+                      <p className="text-sm font-medium text-neutral-900">Email Us</p>
+                      <p className="text-sm text-primary-600 font-medium">{websiteData.businessInfo.email}</p>
                     </div>
                   </a>
-                  <a href={`tel:${getWebsiteData().mobile}`} className="flex items-center p-4 rounded-xl bg-green-50 hover:bg-green-100 transition-colors duration-200 border border-green-100">
-                    <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+                  <a href={`tel:${websiteData.businessInfo.phone}`} className="flex items-center p-4 rounded-xl bg-secondary-50 hover:bg-secondary-100 transition-colors duration-200 border border-secondary-100">
+                    <div className="w-12 h-12 bg-secondary-500 rounded-xl flex items-center justify-center mr-4 shadow-lg">
                       <Phone className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">Call Us</p>
-                      <p className="text-sm text-green-600 font-medium">{getWebsiteData().mobile}</p>
+                      <p className="text-sm font-medium text-neutral-900">Call Us</p>
+                      <p className="text-sm text-secondary-600 font-medium">{websiteData.businessInfo.phone}</p>
                     </div>
                   </a>
                 </div>

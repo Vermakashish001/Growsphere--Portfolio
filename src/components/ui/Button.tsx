@@ -39,11 +39,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     )
     
     const variants = {
-      primary: 'bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 focus:ring-primary-500 shadow-xl hover:shadow-2xl border border-primary-500/20',
-      secondary: 'bg-gradient-to-r from-secondary-600 to-secondary-700 text-white hover:from-secondary-700 hover:to-secondary-800 focus:ring-secondary-500 shadow-xl hover:shadow-2xl border border-secondary-500/20',
+      primary: 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 focus:ring-primary-500 shadow-xl hover:shadow-2xl border border-primary-500/20',
+      secondary: 'bg-gradient-to-r from-secondary-500 to-secondary-600 text-white hover:from-secondary-600 hover:to-secondary-700 focus:ring-secondary-500 shadow-xl hover:shadow-2xl border border-secondary-500/20',
       outline: 'border-2 border-white/90 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-primary-700 focus:ring-white/50 shadow-lg hover:shadow-xl transition-all duration-300',
       ghost: 'text-primary-600 hover:bg-primary-50 focus:ring-primary-500 hover:shadow-md',
-      gradient: 'bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white hover:from-primary-600 hover:via-primary-700 hover:to-primary-800 shadow-2xl hover:shadow-primary-500/25 border border-primary-400/30'
+      gradient: 'bg-gradient-to-r from-primary-500 via-accent-500 to-secondary-500 text-white hover:from-primary-600 hover:via-accent-600 hover:to-secondary-600 shadow-2xl hover:shadow-primary-500/25 border border-primary-400/30'
     }
     
     const sizes = {

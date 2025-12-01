@@ -9,28 +9,52 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#f0f0ff',
+          100: '#e6e6ff',
+          200: '#d1d1ff',
+          300: '#b3b3ff',
+          400: '#9494ff',
+          500: '#5D5FEF', // Main primary color from palette
+          600: '#4a4ce6',
+          700: '#3a3cdd',
+          800: '#2e30d4',
+          900: '#1f21cb',
         },
         secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#fef7fc',
+          100: '#fdeef8',
+          200: '#FCDDEC', // Light pink from palette
+          300: '#f9b3d9',
+          400: '#F178B6', // Medium pink from palette
+          500: '#EF5DA8', // Main secondary color from palette
+          600: '#e63d91',
+          700: '#d12d7a',
+          800: '#b82563',
+          900: '#9f1f4c',
+        },
+        accent: {
+          50: '#f5f5ff',
+          100: '#ebebff',
+          200: '#d9daff',
+          300: '#bdbeff',
+          400: '#A5A6F6', // Light purple from palette
+          500: '#7879F1', // Medium purple from palette
+          600: '#5d5fe8',
+          700: '#4a4cdf',
+          800: '#3a3cd6',
+          900: '#2d2fcd',
+        },
+        neutral: {
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#171717',
         }
       },
       fontFamily: {
@@ -54,7 +78,9 @@ module.exports = {
       boxShadow: {
         '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25)',
         'white': '0 25px 50px -12px rgba(255, 255, 255, 0.25)',
-        'primary': '0 25px 50px -12px rgba(2, 132, 199, 0.25)',
+        'primary': '0 25px 50px -12px rgba(93, 95, 239, 0.25)',
+        'secondary': '0 25px 50px -12px rgba(239, 93, 168, 0.25)',
+        'accent': '0 25px 50px -12px rgba(120, 121, 241, 0.25)',
       },
     },
   },
