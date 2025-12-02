@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 
 interface TeamMember {
   name: string;
+  email: string;
   phone: string;
 }
 
@@ -14,8 +15,11 @@ interface InquiryData {
   teamMembers: TeamMember[];
   projectTitle: string;
   projectDescription: string;
-  techStack: string;
+  projectType: string;
+  paymentPlan: string;
+  totalAmount: string;
   deadline: string;
+  additionalNotes?: string;
   files?: File[];
 }
 
@@ -31,8 +35,11 @@ export async function POST(request: Request) {
       teamMembers: JSON.parse(formData.get('teamMembers') as string),
       projectTitle: formData.get('projectTitle') as string,
       projectDescription: formData.get('projectDescription') as string,
-      techStack: formData.get('techStack') as string,
-      deadline: formData.get('deadline') as string
+      projectType: formData.get('projectType') as string,
+      paymentPlan: formData.get('paymentPlan') as string,
+      totalAmount: formData.get('totalAmount') as string,
+      deadline: formData.get('deadline') as string,
+      additionalNotes: formData.get('additionalNotes') as string
     };
 
     // Get files and validate them
@@ -58,7 +65,7 @@ export async function POST(request: Request) {
     }
 
     // Validate required fields
-    const requiredFields = ['fullName', 'email', 'phone', 'university', 'projectTitle', 'projectDescription', 'techStack', 'deadline'];
+    const requiredFields = ['fullName', 'email', 'phone', 'university', 'projectTitle', 'projectDescription', 'projectType', 'paymentPlan', 'totalAmount', 'deadline'];
     const missingFields = requiredFields.filter(field => !data[field as keyof typeof data]);
     
     if (missingFields.length > 0) {
@@ -69,9 +76,9 @@ export async function POST(request: Request) {
     }
 
     // Validate team members
-    if (!data.teamMembers || data.teamMembers.length < 2) {
+    if (!data.teamMembers || data.teamMembers.length < 1) {
       return NextResponse.json(
-        { error: 'At least two team members are required' },
+        { error: 'At least one team member is required' },
         { status: 400 }
       );
     }
@@ -103,18 +110,22 @@ export async function POST(request: Request) {
       );
     }
 
-    // Create SMTP configuration
+    // Create SMTP configuration with better timeout handling
     const smtpConfig = {
       host: process.env.SMTP_HOST || 'smtp.zoho.com',
-      port: parseInt(process.env.SMTP_PORT || '465'),
-      secure: parseInt(process.env.SMTP_PORT || '465') === 465,
+      port: parseInt(process.env.SMTP_PORT || '587'),
+      secure: parseInt(process.env.SMTP_PORT || '587') === 465, // true for 465, false for other ports
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
       tls: {
         rejectUnauthorized: false,
+        ciphers: 'SSLv3'
       },
+      connectionTimeout: 10000, // 10 seconds
+      greetingTimeout: 10000, // 10 seconds
+      socketTimeout: 20000, // 20 seconds
       debug: true,
       logger: true
     };
@@ -131,17 +142,9 @@ export async function POST(request: Request) {
     // Create transporter with proper type
     const transporter = nodemailer.createTransport(smtpConfig);
 
-    try {
-      // Verify connection configuration
-      await transporter.verify();
-      console.log('SMTP connection verified successfully');
-    } catch (verifyError) {
-      console.error('SMTP Verification Error:', verifyError);
-      return NextResponse.json(
-        { error: 'Email service connection error. Please try again later.' },
-        { status: 500 }
-      );
-    }
+    // Skip verification and try sending directly
+    // Verification can be unreliable with some SMTP servers
+    console.log('Attempting to send email without verification...');
 
     // Format team members for email
     const teamMembersHtml = data.teamMembers
@@ -149,6 +152,7 @@ export async function POST(request: Request) {
         <div style="margin: 10px 0;">
           <p><strong>Member ${index + 1}:</strong></p>
           <p>Name: ${member.name}</p>
+          <p>Email: ${member.email}</p>
           <p>Phone: ${member.phone}</p>
         </div>
       `)
@@ -200,10 +204,17 @@ export async function POST(request: Request) {
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3>Project Details:</h3>
             <p><strong>Title:</strong> ${data.projectTitle}</p>
-            <p><strong>Technology Stack:</strong> ${data.techStack}</p>
+            <p><strong>Project Type:</strong> ${data.projectType}</p>
             <p><strong>Deadline:</strong> ${data.deadline}</p>
             <h4>Project Description:</h4>
             <p style="white-space: pre-wrap;">${data.projectDescription}</p>
+            ${data.additionalNotes ? `<h4>Additional Notes:</h4><p style="white-space: pre-wrap;">${data.additionalNotes}</p>` : ''}
+          </div>
+
+          <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+            <h3>Payment Information:</h3>
+            <p><strong>Payment Plan:</strong> ${data.paymentPlan}</p>
+            <p><strong>Total Amount:</strong> ₹${data.totalAmount}</p>
           </div>
 
           ${files.length > 0 ? `

@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 import { Check, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const projectTypes = [
-  { id: 'web', label: 'Web Development', price: 5000 },
-  { id: 'ml', label: 'ML Model Integration', price: 7000 },
-  { id: 'ai', label: 'Generative AI Solution', price: 8000 }
+  { id: 'web', label: 'Web Development', price: 10000 },
+  { id: 'ai', label: 'Generative AI Solution', price: 12000 },
+  { id: 'ml', label: 'ML Model Integration', price: 14000 },
 ]
 
 const PricingPlans = () => {
@@ -29,7 +29,8 @@ const PricingPlans = () => {
         'Free maintenance (3 months)',
         'Source code included',
         'Documentation provided'
-      ]
+      ],
+      popular: true
     },
     {
       name: 'Half Payment',
@@ -38,7 +39,6 @@ const PricingPlans = () => {
       price: Math.round((basePrice * 0.95) / 2),
       priceLabel: '/ per installment',
       color: 'from-secondary-500 to-secondary-600',
-      popular: true,
       features: [
         'Complete project delivery',
         'Standard support',
@@ -119,7 +119,7 @@ const PricingPlans = () => {
             ))}
           </div>
           <p className="text-center text-white/80 mt-6 text-lg">
-            Base Price: <span className="font-bold text-white text-2xl">${basePrice}</span>
+            Base Price: <span className="font-bold text-white text-2xl">₹{basePrice}</span>
           </p>
         </div>
 
@@ -171,14 +171,14 @@ const PricingPlans = () => {
                     {/* Card Content */}
                     <div className={`bg-gradient-to-r ${plan.color} p-6 text-white relative`}>
                       {plan.popular && (
-                        <div className="absolute top-4 right-4 bg-white text-secondary-600 px-3 py-1 rounded-full text-xs font-bold">
+                        <div className="absolute top-4 right-4 bg-primary-300 text-primary-600 px-3 py-1 rounded-full text-xs font-bold">
                           POPULAR
                         </div>
                       )}
                       <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                       <p className="text-sm text-white/90 mb-4 min-h-[60px]">{plan.description}</p>
                       <div className="flex items-baseline">
-                        <span className="text-4xl font-bold">${plan.price}</span>
+                        <span className="text-4xl font-bold">₹{plan.price}</span>
                         <span className="text-sm ml-2 text-white/80">{plan.priceLabel}</span>
                       </div>
                       <div className="mt-2">
@@ -200,7 +200,7 @@ const PricingPlans = () => {
                         ))}
                       </ul>
                       <a
-                        href="/capstone-projects/start"
+                        href={`/capstone-projects/start?plan=${encodeURIComponent(plan.name)}&price=${plan.price}&type=${selectedProjectType}`}
                         className={`block w-full text-center bg-gradient-to-r ${plan.color} text-white py-4 rounded-2xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
                       >
                         Get Started
@@ -218,20 +218,21 @@ const PricingPlans = () => {
             <div
               key={index}
               className={`bg-white rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-105 ${
-                plan.popular ? 'ring-4 ring-secondary-400' : ''
+                plan.popular ? 'ring-4 ring-primary-400' : ''
               }`}
             >
               {/* Header */}
               <div className={`bg-gradient-to-r ${plan.color} p-6 text-white relative`}>
                 {plan.popular && (
-                  <div className="absolute top-4 right-4 bg-white text-secondary-600 px-3 py-1 rounded-full text-xs font-bold">
+                  <div className="absolute top-4 right-4 bg-white text-primary-600 px-3 py-1 rounded-full text-xs font-bold">
                     POPULAR
                   </div>
                 )}
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                 <p className="text-sm text-white/90 mb-4 min-h-[60px]">{plan.description}</p>
                 <div className="flex items-baseline">
-                  <span className="text-4xl font-bold">${plan.price}</span>
+                  <span className="text-4xl font-bold">
+                    ₹{plan.price}</span>
                   <span className="text-sm ml-2 text-white/80">{plan.priceLabel}</span>
                 </div>
                 <div className="mt-2">
@@ -256,7 +257,7 @@ const PricingPlans = () => {
 
                 {/* CTA Button */}
                 <a
-                  href="/capstone-projects/start"
+                  href={`/capstone-projects/start?plan=${encodeURIComponent(plan.name)}&price=${plan.price}&type=${selectedProjectType}`}
                   className={`block w-full text-center bg-gradient-to-r ${plan.color} text-white py-4 rounded-2xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
                 >
                   Get Started
