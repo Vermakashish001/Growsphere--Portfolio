@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 import { Check, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const projectTypes = [
-  { id: 'web', label: 'Web Development', price: 10000 },
-  { id: 'ai', label: 'Generative AI Solution', price: 12000 },
-  { id: 'ml', label: 'ML Model Integration', price: 14000 },
+  { id: 'web', label: 'Web Development', price: 9999 },
+  { id: 'ai', label: 'Generative AI Solution', price: 11999 },
+  { id: 'ml', label: 'ML Model Integration', price: 13999 },
 ]
 
 const PricingPlans = () => {
