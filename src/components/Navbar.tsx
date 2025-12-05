@@ -1,6 +1,7 @@
-'use client'
+"use client"
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Menu, X, ChevronRight, Mail, Phone } from 'lucide-react'
 import websiteData from '../../data.json'
@@ -20,12 +21,14 @@ const defaultNavigation: NavItem[] = [
   { name: 'Portfolio', path: 'portfolio', type: 'scroll' },
   { name: 'Testimonials', path: 'testimonials', type: 'scroll' },
   { name: 'Capstone Projects', path: '/capstone-projects', type: 'link' },
+  // Keep Contact as a scroll item; scroll handler will fallback to home/#contact when needed
   { name: 'Contact Us', path: 'contact', type: 'scroll' }
 ]
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const router = useRouter()
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -56,6 +59,17 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
       setIsMobileMenuOpen(false)
+      return
+    }
+
+    // If the element isn't present on the current page (e.g., on a different route),
+    // navigate to the home page with a hash so the browser scrolls to the section after navigation.
+    try {
+      router.push(`/#${sectionId}`)
+      setIsMobileMenuOpen(false)
+    } catch (e) {
+      // As a very small fallback, change location.href
+      window.location.href = `/#${sectionId}`
     }
   }
 

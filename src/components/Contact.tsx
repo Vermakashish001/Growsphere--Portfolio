@@ -300,6 +300,17 @@ Contact Information:
                 )}
               </form>
             </div>
+
+            {/* Capstone Projects CTA - placed below the white form card */}
+            <div className="mt-4">
+              <a
+                href="/capstone-projects"
+                className="w-full block py-4 px-6 rounded-2xl font-semibold text-lg transition-all duration-300 bg-[#d12d7a] hover:opacity-90 text-white text-center shadow-2xl hover:shadow-3xl"
+              >
+                Click me for Capstone Projects
+              </a>
+            </div>
+
           </div>
 
           {/* Contact Information */}

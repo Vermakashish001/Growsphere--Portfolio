@@ -24,11 +24,13 @@ const PricingPlans = () => {
       priceLabel: '/ one-time',
       color: 'from-primary-500 to-primary-600',
       features: [
-        'Complete project delivery',
-        'Priority support',
-        'Free maintenance (3 months)',
-        'Source code included',
-        'Documentation provided'
+        '100% On-Time Delivery Guarantee',
+        'Dedicated Senior Support Manager',
+        'Free Maintenance (4 Months)',
+        'Lifetime Access to Source Code',
+        'Comprehensive Documentation & Training',
+        'Free Discovery & Strategy Session',
+        'Pre-Launch QA & Stress Testing'
       ],
       popular: true
     },
@@ -41,10 +43,12 @@ const PricingPlans = () => {
       color: 'from-secondary-500 to-secondary-600',
       features: [
         'Complete project delivery',
-        'Standard support',
-        'Free maintenance (2 months)',
+        'Standard Technical Support',
+        'Free maintenance (3 months)',
         'Source code included',
-        'Documentation provided'
+        'Documentation provided',
+        'Responsive Design Included',
+        'Dedicated Project Manager'
       ]
     },
     {
@@ -56,10 +60,12 @@ const PricingPlans = () => {
       color: 'from-accent-500 to-accent-600',
       features: [
         'Complete project delivery',
-        'Standard support',
-        'Free maintenance (1 month)',
+        'Standard Technical Support',
+        'Free maintenance (2 month)',
         'Source code included',
-        'Documentation provided'
+        'Documentation provided',
+        'Responsive Design Included',
+        'Dedicated Project Manager'
       ]
     }
   ]

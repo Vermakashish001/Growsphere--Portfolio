@@ -182,7 +182,7 @@ const CapstoneInquiryForm = () => {
   ]
 
   const ProgressBar = () => (
-    <div className="w-full px-4 sm:px-0 bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+    <div className="w-full px-4 sm:px-0 bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 lg:p-10">
       <ul className="flex justify-between items-center">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
