@@ -250,9 +250,9 @@ const CapstoneInquiryForm = () => {
             <ProgressBar />
           </div>
           
-          {/* Selected Plan Badge - Top Right */}
+          {/* Selected Plan Badge - Top Right Desktop, Top Mobile */}
           {selectedPlan && (
-            <div className="fixed top-24 right-4 z-50 hidden lg:block">
+            <div className="fixed top-20 right-4 z-50 lg:block hidden">
               <div className="bg-white rounded-2xl p-4 shadow-2xl border-2 border-primary-200 w-72 backdrop-blur-sm">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -281,9 +281,37 @@ const CapstoneInquiryForm = () => {
             </div>
           )}
 
+          {/* Selected Plan Badge - Mobile Top Banner */}
+          {selectedPlan && (
+            <div className="lg:hidden bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl p-4 mb-6 shadow-lg">
+              <div className="flex items-center justify-between text-white">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-300 rounded-full animate-pulse"></div>
+                  <span className="text-xs font-bold uppercase tracking-wide">Plan Selected</span>
+                </div>
+              </div>
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-2">
+                  <div className="text-[9px] font-semibold uppercase tracking-wider opacity-90">Plan</div>
+                  <div className="text-xs font-bold mt-1">{selectedPlan.plan}</div>
+                </div>
+                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-2">
+                  <div className="text-[9px] font-semibold uppercase tracking-wider opacity-90">Amount</div>
+                  <div className="text-sm font-bold mt-1">₹{selectedPlan.price}</div>
+                </div>
+                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-2">
+                  <div className="text-[9px] font-semibold uppercase tracking-wider opacity-90">Type</div>
+                  <div className="text-xs font-bold mt-1 capitalize">
+                    {selectedPlan.type.replace('web', 'Web').replace('ml', 'ML').replace('ai', 'AI')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Success Message */}
           {isSubmitted ? (
-            <div className="bg-white rounded-3xl shadow-2xl p-8 sm:p-12 lg:p-16 text-center animate-fade-in">
+            <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-12 text-center animate-fade-in">
               <div className="max-w-2xl mx-auto">
                 <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -291,15 +319,15 @@ const CapstoneInquiryForm = () => {
                   </svg>
                 </div>
                 
-                <h2 className="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
                   Submission Successful!
                 </h2>
                 
-                <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
+                <p className="text-base sm:text-lg text-neutral-600 mb-6 sm:mb-8 leading-relaxed">
                   Thank you for your inquiry! We&apos;ve received your project details and will review them carefully. Our team will get back to you within 24-48 hours.
                 </p>
                 
-                <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-6 mb-8">
+                <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">
                   <h3 className="text-lg font-bold text-neutral-800 mb-3">What happens next?</h3>
                   <ul className="space-y-3 text-left">
                     <li className="flex items-start gap-3">
@@ -340,7 +368,7 @@ const CapstoneInquiryForm = () => {
               </div>
             </div>
           ) : (
-          <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 space-y-8">
+          <form onSubmit={handleSubmit} className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-10 space-y-6 sm:space-y-8">
           {/* Step 1: Contact Information */}
           {currentStep === 1 && (
             <section className="space-y-6 animate-fade-in">
@@ -529,27 +557,27 @@ const CapstoneInquiryForm = () => {
           )}
 
           {/* Navigation Buttons */}
-          <div className="pt-6 flex justify-between items-center border-t border-neutral-200">
-            <div>
+          <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0 border-t border-neutral-200">
+            <div className="w-full sm:w-auto order-2 sm:order-1">
               {currentStep > 1 && (
                 <button type="button" onClick={prevStep}
-                  className="px-8 py-3 border-2 border-neutral-300 text-base font-semibold rounded-xl text-neutral-700 bg-white hover:bg-neutral-50 transition-all">
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-neutral-300 text-sm sm:text-base font-semibold rounded-xl text-neutral-700 bg-white hover:bg-neutral-50 transition-all">
                   Previous
                 </button>
               )}
             </div>
             
-            <div>
+            <div className="w-full sm:w-auto order-1 sm:order-2">
               {currentStep < 4 && (
                 <button type="button" onClick={nextStep}
-                  className="px-8 py-3 border-2 border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-transparent text-sm sm:text-base font-semibold rounded-xl text-white bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                   Next Step
                 </button>
               )}
               
               {currentStep === 4 && (
                 <button type="submit" disabled={isSubmitting}
-                  className={`px-8 py-3 border-2 border-transparent text-base font-semibold rounded-xl text-white shadow-lg transition-all transform
+                  className={`w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-transparent text-sm sm:text-base font-semibold rounded-xl text-white shadow-lg transition-all transform
                     ${isSubmitting ? 'bg-neutral-400 cursor-not-allowed' : 'bg-gradient-to-r from-secondary-500 to-secondary-600 hover:from-secondary-600 hover:to-secondary-700 hover:shadow-xl hover:scale-105'}`}>
                   {isSubmitting ? 'Submitting...' : 'Submit Inquiry'}
                 </button>
